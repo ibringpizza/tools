@@ -1,3 +1,5 @@
+#clean json files from ftp.godaddy.com by setting a maximum bid amount to be returned
+
 import sys
 import json
 

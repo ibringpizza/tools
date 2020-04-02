@@ -3,7 +3,7 @@ import sys
 import time
 import math
 
-#
+#download and search captions for phrases. may add regex
 
 def find(search, captions):
     ar = []
@@ -12,13 +12,13 @@ def find(search, captions):
             ar.append(cc)
     return ar
 
+#fetch captions
 def fetch(rfile, query):
     wfile = input('name of saved transcripts file \n') + '.txt'
-    #wfile = 'allagp.txt'
 
     ids = open(rfile, 'r').read().splitlines()
 
-    #clean
+    #assumes that each line is a youtube url if the first line contains an '='. otherwise, assumes one video id per line
     try:
         ids = [c[c.index('=')+1:] for c in ids]
     except:

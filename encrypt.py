@@ -2,6 +2,8 @@ import base64
 from itertools import cycle
 import sys
 
+#encrypt/decrypt text files using xor encryption
+
 def encrypt(data, key):
     xored = ''.join(chr(ord(a) ^ ord(b)) for (a,b) in zip(data, cycle(key)))
     xored = base64.encodebytes(bytes(xored, 'utf-8')).strip()

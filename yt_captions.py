@@ -3,6 +3,8 @@ import sys
 import time
 import math
 
+#
+
 def find(search, captions):
     ar = []
     for cc in captions:
@@ -30,7 +32,7 @@ def fetch(rfile, query):
         try:
             cc = YouTubeTranscriptApi.get_transcript(i)
             captions.append({i:cc})
-            open('C:\\Users\\leand\\Desktop\\scraped_youtube_channels\\captions\\' + wfile, 'a').write(str({i:cc}) + '\n')
+            open('captions\\' + wfile, 'a').write(str({i:cc}) + '\n')
             print('wrote', i)
             found = find(query, cc)
             if len(found) > 0:

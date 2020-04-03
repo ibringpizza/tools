@@ -1,6 +1,7 @@
 import base64
 from itertools import cycle
 import sys
+import hashlib
 
 #encrypt/decrypt text files using xor encryption
 
@@ -18,12 +19,15 @@ if len(sys.argv) != 5:
     print('python encrypt.py encrypt/decrypt key input_file output_file')
     sys.exit()
 
-if sys.argv[1] == 'encrypt' or 'e':
+#use sha256 hash of key
+key_hash = hashlib.sha256(sys.argv[2].encode()).hexdigest()
+
+if sys.argv[1] == 'encrypt':
     read = open(sys.argv[3], 'r').read()
-    encrypted = encrypt(read, sys.argv[2])
+    encrypted = encrypt(read, key_hash)
     open(sys.argv[4], 'w').write(encrypted)
 
-if sys.argv[1] == 'decrypt' or 'd':
+if sys.argv[1] == 'decrypt':
     read = open(sys.argv[3], 'r').read()
-    decrypted = decrypt(read, sys.argv[2])
+    decrypted = decrypt(read, key_hash)
     open(sys.argv[4], 'w').write(decrypted)

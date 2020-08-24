@@ -24,7 +24,11 @@ for L in range(len(ready)):
         except Exception as e:
             pass
 
-ready = sorted(ready, key=operator.itemgetter(int(sys.argv[2])), reverse=(sys.argv[3]=='d'))
+try:
+    ready = sorted(ready, key=operator.itemgetter(int(sys.argv[2])), reverse=(sys.argv[3]=='d'))
+except:
+    print([r for r in ready if len(r) == min([len(r) for r in ready])])
+    print(sorted([len(r) for r in ready]))
 
 for line in ready[:int(sys.argv[4])]:
     print(','.join([str(i) for i in line]))

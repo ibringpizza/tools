@@ -25,4 +25,5 @@ s = ''.join([f'[{_}:v:0][{_}:a:0]' for _ in range(len(files))])
 #combine all videos -> https://trac.ffmpeg.org/wiki/Concatenate
 cmd = f'ffmpeg -i {" -i ".join(files)} -filter_complex "{s}concat=n={len(files)}:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" {sys.argv[2]}'
 print(cmd)
+input('continue?')
 os.system(cmd)

@@ -16,7 +16,7 @@ def decrypt(data, key):
     return xored
 
 if len(sys.argv) != 5:
-    print('python encrypt.py encrypt/decrypt key input_file output_file')
+    print('python encrypt.py encrypt/decrypt key input_file output_file/print')
     sys.exit()
 
 #use sha256 hash of key
@@ -25,9 +25,15 @@ key_hash = hashlib.sha256(sys.argv[2].encode()).hexdigest()
 if sys.argv[1] == 'encrypt':
     read = open(sys.argv[3], 'r').read()
     encrypted = encrypt(read, key_hash)
-    open(sys.argv[4], 'w').write(encrypted)
+    if sys.argv[4] == 'print':
+        print(encrypted)
+    else:
+        open(sys.argv[4], 'w').write(encrypted)
 
 if sys.argv[1] == 'decrypt':
     read = open(sys.argv[3], 'r').read()
     decrypted = decrypt(read, key_hash)
-    open(sys.argv[4], 'w').write(decrypted)
+    if sys.argv[4] == 'print':
+        print(decrypted)
+    else:
+        open(sys.argv[4], 'w').write(decrypted)
